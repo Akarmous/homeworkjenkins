@@ -12,6 +12,17 @@ pipeline {
                 git branch: 'main',
                 url : 'https://github.com/abdessalembenchrifa/homeworkjenkins.git';
             }
-        }
+     }
+        
+	stage('Scan') {
+		steps {
+		withSonarQubeEnv(installationName: 'sq1') {
+		sh """mvn clean package sonar:sonar"""
+	      }
+	
+	
+}
+}
+
     }
 }
